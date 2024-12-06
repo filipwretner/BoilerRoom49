@@ -43,7 +43,6 @@ h2 {
 #allCharacterSection, #teamSection {
     padding: 10px;
     background-color: #D4AF37;
-    color: #2E2E2E;
     border: 2px solid #8B4513;
     border-radius: 10px;
     text-align: center;
@@ -68,6 +67,7 @@ h2 {
 .characterCard {
     background-color: #6B8E23;
     border: 1px solid #8B4513;
+    color: #FAF3E0;
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
