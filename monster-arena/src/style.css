@@ -1,0 +1,143 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-image: url(https://img.freepik.com/premium-photo/spooky-halloween-background-with-empty-wooden-planks-dark-horror-background_132358-14427.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+h1 {
+    text-align: center;
+    margin: 20px 0;
+    color: white;
+}
+
+#messageDiv {
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+}
+
+#container {
+ display: flex;
+ justify-content: space-between;
+ gap: 20px;
+ padding: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+
+#allMonsterSection, #teamSection {
+    flex: 1;
+    padding: 10px;
+    background-color: orange;
+    text-align: center;
+    border-radius: 10px;
+    max-width: 1000px;
+}
+
+#monster-container, #teamContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.monsterCard {
+    background-color: darkgray;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.4s;
+    margin-bottom: 1rem;
+    width: 300px;
+    height: 450px;
+    margin: auto auto 1rem;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.monsterCard:hover {
+    transform: scale(1.02);
+}
+
+.monsterCard img {
+    width: 100%;
+    height: auto;
+    max-height: 50%;
+    object-fit:contain
+}
+
+.monsterName {
+    font-size: 1.2rem;
+    margin: 10px 0 5px;
+}
+
+.monsterSpeciality {
+    font-size: 1rem;
+}
+
+button {
+    cursor: pointer;
+}
+
+.monsterDetails {
+    width: 100%;
+    margin-top: auto;
+}
+
+.addButton, .removeButton {
+    width: 90%;
+    padding: 10px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin-top: 5px;
+}
+
+.addButton {
+    background-color: lime;
+}
+
+.addButton:hover {
+    background-color: limegreen;
+}
+
+.removeButton {
+    background-color: red;
+}
+
+.removeButton:hover {
+    background-color: darkred;
+}
+
+#resetButton {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: yellow;
+    font-size: 20px;
+    border: none;
+}
+
+#resetButton:hover {
+    background-color: gold;
+}
+
+@media (max-width: 768px) {
+    #container {
+        flex-direction: column;
+    }
+
+    #monster-container, #teamContainer {
+        display: block;
+    }
+}
