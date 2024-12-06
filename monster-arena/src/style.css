@@ -1,12 +1,10 @@
 body {
-    font-family: sans-serif;
+    font-family: "Palantino Lynotype", serif;
+    color: #FAF3E0;
+    background-color: #2F4F2F;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-image: url(https://img.freepik.com/premium-photo/spooky-halloween-background-with-empty-wooden-planks-dark-horror-background_132358-14427.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
 }
 
 h1 {
@@ -18,45 +16,66 @@ h1 {
 #messageDiv {
     margin-bottom: 20px;
     text-align: center;
-    color: white;
+    font-style: italic;
 }
 
 #container {
- display: flex;
- justify-content: space-between;
- gap: 20px;
- padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr; 
+    gap: 20px;
+    padding: 20px;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #FAF3E0;
+    text-shadow: 2px 2px 4px #000;
+}
+
+h1 {
+    font-size: 3rem;
 }
 
 h2 {
-    text-align: center;
+    font-size: 2rem;
 }
 
-#allMonsterSection, #teamSection {
-    flex: 1;
+#allCharacterSection, #teamSection {
     padding: 10px;
-    background-color: orange;
-    text-align: center;
+    background-color: #D4AF37;
+    color: #2E2E2E;
+    border: 2px solid #8B4513;
     border-radius: 10px;
-    max-width: 1000px;
+    text-align: center;
+    max-width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
-#monster-container, #teamContainer {
+#allCharacterSection {
+    grid-column: 1; 
+}
+
+#teamSection {
+    grid-column: 2; 
+}
+
+#character-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
-.monsterCard {
-    background-color: darkgray;
-    border: 1px solid black;
+.characterCard {
+    background-color: #6B8E23;
+    border: 1px solid #8B4513;
     border-radius: 10px;
     padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     transition: transform 0.4s;
     margin-bottom: 1rem;
-    width: 300px;
-    height: 450px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 900px;
     margin: auto auto 1rem;
     align-content: center;
     display: flex;
@@ -65,79 +84,90 @@ h2 {
     align-items: center;
 }
 
-.monsterCard:hover {
+.characterCard:hover {
     transform: scale(1.02);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6)
 }
 
-.monsterCard img {
+.characterCard img {
     width: 100%;
     height: auto;
-    max-height: 50%;
-    object-fit:contain
+    max-height: 200px;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
-.monsterName {
-    font-size: 1.2rem;
+h3 {
+    font-size: 1.4rem;
     margin: 10px 0 5px;
+    text-align: center;
 }
 
-.monsterSpeciality {
-    font-size: 1rem;
+.characterCard p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 button {
     cursor: pointer;
 }
 
-.monsterDetails {
-    width: 100%;
-    margin-top: auto;
-}
-
 .addButton, .removeButton {
     width: 90%;
     padding: 10px;
+    font-size: 1.1rem;
     font-weight: bold;
     border: none;
     border-radius: 10px;
-    color: white;
+    color: #FAF3E0;
     margin-top: 5px;
 }
 
 .addButton {
-    background-color: lime;
+    background-color: #4682B4;
 }
 
 .addButton:hover {
-    background-color: limegreen;
+    background-color: #5A9BD6;
 }
 
 .removeButton {
-    background-color: red;
+    background-color: #8B0000;
 }
 
 .removeButton:hover {
-    background-color: darkred;
+    background-color: #A40000;
 }
 
 #resetButton {
     width: 100%;
     padding: 10px 20px;
-    background-color: yellow;
+    background-color: #4B0082;
+    border-radius: 10px;
     font-size: 20px;
     border: none;
+    color: #FAF3E0;
+    margin-bottom: 1rem;
 }
 
 #resetButton:hover {
-    background-color: gold;
+    background-color: #5A00A5;
 }
 
 @media (max-width: 768px) {
+
     #container {
-        flex-direction: column;
+        grid-template-columns: 1fr; 
     }
 
-    #monster-container, #teamContainer {
-        display: block;
+    #character-container {
+        grid-template-columns: 1fr; 
+    }
+
+    #teamContainer {
+        flex-direction: column;
     }
 }

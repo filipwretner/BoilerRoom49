@@ -10,77 +10,79 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 var _a;
 let firstUserTeam = [];
-let allMonsters = [];
+let allCharacters = [];
 const messageDiv = document.getElementById("messageDiv");
-// Fetch monsters from Dungeons & Dragons API
-function fetchMonsters() {
+function fetchCharacters() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const response = yield fetch('https://www.dnd5eapi.co/api/monsters');
+            const response = yield fetch('./characters.json');
             if (!response.ok) {
-                throw new Error("Failed to fetch monster data");
+                throw new Error("Failed to fetch character data");
             }
             const data = yield response.json();
-            allMonsters = data.results.map((monster) => ({
-                id: monster.index,
-                name: monster.name,
-                image: `https://via.placeholder.com/150?text=${monster.name}`,
-                speciality: "A powerful creature from D&D universe."
+            allCharacters = data.map((character) => ({
+                id: character.id,
+                name: character.name,
+                image: character.image,
+                passive: character.passive,
+                basic: character.basic,
+                ultimate: character.ultimate
             }));
-            displayMonsters(allMonsters);
-            loadSavedTeam();
+            displayCharacters(allCharacters);
+            const savedTeam = localStorage.getItem("characterTeam");
+            if (savedTeam) {
+                firstUserTeam = JSON.parse(savedTeam);
+                renderTeam();
+            }
         }
         catch (error) {
-            console.error("Error fetching monster data:", error);
-            messageDiv.textContent = "Failed to load monsters. Please try again later.";
+            console.error("Error fetching character data:", error);
+            messageDiv.textContent = "Failed to load characters. Please try again later.";
         }
     });
 }
-function displayMonsters(monsterList) {
-    const container = document.getElementById("monster-container");
+function displayCharacters(characterList) {
+    const container = document.getElementById("character-container");
     container.innerHTML = "";
-    monsterList.forEach((monster) => {
-        const monsterCard = document.createElement("div");
-        monsterCard.classList.add("monsterCard");
-        const monsterImg = document.createElement("img");
-        monsterImg.src = monster.image;
-        monsterImg.alt = monster.name;
-        const monsterDetails = document.createElement("div");
-        monsterDetails.classList.add("monsterDetails");
-        const monsterName = document.createElement("h3");
-        monsterName.classList.add("monsterName");
-        monsterName.textContent = monster.name;
-        const monsterSpeciality = document.createElement("p");
-        monsterSpeciality.classList.add("monsterSpeciality");
-        monsterSpeciality.textContent = monster.speciality;
+    characterList.forEach((character) => {
+        const characterCard = document.createElement("div");
+        characterCard.classList.add("characterCard");
+        characterCard.innerHTML = `
+            <img src="${character.image}" alt="Picture of ${character.name}">
+            <h3>${character.name}</h3>
+            <p>Abilities</p>
+            <p class="abilityText">${character.passive}</p>
+            <p class="abilityText">${character.basic}</p>
+            <p class="abilityText">${character.ultimate}</p>
+        `;
         const addButton = document.createElement("button");
         addButton.classList.add("addButton");
         addButton.textContent = "Add to your team";
-        addButton.addEventListener("click", () => addToTeam(monster));
-        monsterCard.appendChild(monsterImg);
-        monsterCard.appendChild(monsterDetails);
-        monsterDetails.appendChild(monsterName);
-        monsterDetails.appendChild(monsterSpeciality);
-        monsterDetails.appendChild(addButton);
-        container.appendChild(monsterCard);
+        addButton.addEventListener("click", () => {
+            console.log(`Adding ${character.name} to your team`);
+            addToTeam(character);
+        });
+        characterCard.appendChild(addButton);
+        container.appendChild(characterCard);
     });
 }
-function addToTeam(monster) {
-    if (firstUserTeam.length < 4 && !firstUserTeam.includes(monster.id)) {
-        firstUserTeam.push(monster.id);
+function addToTeam(character) {
+    if (firstUserTeam.length < 4 && !firstUserTeam.includes(character.id)) {
+        firstUserTeam.push(character.id);
         messageDiv.textContent = "";
         renderTeam();
         saveTeamToLocalStorage();
     }
     else if (firstUserTeam.length >= 4) {
-        messageDiv.textContent = "You can only select up to 4 unique monsters.";
+        messageDiv.textContent = "You can only select up to 4 unique characters.";
     }
     else {
-        messageDiv.textContent = "You can't select the same monster twice.";
+        messageDiv.textContent = "You can't select the same character twice.";
     }
+    console.log(`Current team: ${firstUserTeam}`);
 }
-function removeFromTeam(monster) {
-    firstUserTeam = firstUserTeam.filter(id => id !== monster.id);
+function removeFromTeam(character) {
+    firstUserTeam = firstUserTeam.filter(id => id !== character.id);
     messageDiv.textContent = "";
     renderTeam();
     saveTeamToLocalStorage();
@@ -89,42 +91,35 @@ function renderTeam() {
     const teamContainer = document.getElementById("teamContainer");
     teamContainer.innerHTML = "";
     firstUserTeam.forEach((id) => {
-        const monster = allMonsters.find(m => m.id === id);
-        if (!monster)
+        const character = allCharacters.find(m => m.id === id);
+        if (!character) {
+            messageDiv.textContent = "No characters saved";
             return;
-        const monsterCard = document.createElement("div");
-        monsterCard.classList.add("monsterCard");
-        const monsterImg = document.createElement("img");
-        monsterImg.src = monster.image;
-        monsterImg.alt = monster.name;
-        const monsterDetails = document.createElement("div");
-        monsterDetails.classList.add("monsterDetails");
-        const monsterName = document.createElement("h3");
-        monsterName.classList.add("monsterName");
-        monsterName.textContent = monster.name;
-        const monsterSpeciality = document.createElement("p");
-        monsterSpeciality.classList.add("monsterSpeciality");
-        monsterSpeciality.textContent = monster.speciality;
+        }
+        const characterCard = document.createElement("div");
+        characterCard.classList.add("characterCard");
+        characterCard.innerHTML = `
+        <img src="${character.image}" alt="Picture of ${character.name}">
+        <h3>${character.name}</h3>
+        `;
         const removeButton = document.createElement("button");
         removeButton.classList.add("removeButton");
         removeButton.textContent = "Remove from your team";
-        removeButton.addEventListener("click", () => removeFromTeam(monster));
-        monsterCard.appendChild(monsterImg);
-        monsterCard.appendChild(monsterDetails);
-        monsterDetails.appendChild(monsterName);
-        monsterDetails.appendChild(monsterSpeciality);
-        monsterDetails.appendChild(removeButton);
-        teamContainer.appendChild(monsterCard);
+        removeButton.addEventListener("click", () => {
+            console.log(`Removing ${character.name} from your team`);
+            removeFromTeam(character);
+        });
+        characterCard.appendChild(removeButton);
+        teamContainer.appendChild(characterCard);
     });
 }
 function saveTeamToLocalStorage() {
-    localStorage.setItem("monsterTeam", JSON.stringify(firstUserTeam));
-}
-function loadSavedTeam() {
-    const savedTeam = localStorage.getItem("monsterTeam");
-    if (savedTeam) {
-        firstUserTeam = JSON.parse(savedTeam);
-        renderTeam();
+    try {
+        localStorage.setItem("characterTeam", JSON.stringify(firstUserTeam));
+        console.log("Team saved to localStorage:", firstUserTeam);
+    }
+    catch (error) {
+        console.error("Failed to save team to localStorage:", error);
     }
 }
 (_a = document.getElementById("resetButton")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
@@ -133,4 +128,4 @@ function loadSavedTeam() {
     saveTeamToLocalStorage();
     renderTeam();
 });
-document.addEventListener("DOMContentLoaded", fetchMonsters);
+document.addEventListener("DOMContentLoaded", fetchCharacters);

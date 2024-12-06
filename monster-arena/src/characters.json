@@ -1,0 +1,66 @@
+[
+    {
+      "id": 0,
+      "name": "Aragorn",
+      "passive": "King of Gondor: Aragorn inspires his allies allowing them to deal more damage.",
+      "basic": "No ordinary ranger: Aragorns training allows him to parry all incoming melee attacks for 10 seconds.",
+      "ultimate": "What say you?: Aragorn summons the Legion of the Dead to fight alongside him.",
+      "image": "./images/aragorn.webp"
+    },
+    {
+      "id": 1,
+      "name": "Legolas",
+      "passive": "Elven training: Each successive hit increases the damage and speed of the next basic attack. This effect caps of at 5 stacks.",
+      "basic": "Lightfoot: Increases Legolas dodge chance by 75% for 15 seconds.",
+      "ultimate": "Arrow of Greenleaf: Legolas fires a volley of arrows pinning enemies to ground, making them unable to move for 15 seconds.",
+      "image": "./images/legolas.webp"
+    },
+    {
+      "id": 2,
+      "name": "Gimli",
+      "passive": "Nobody tosses a dwarf: Gimli is immune to being moved against his will.",
+      "basic": "House of Durin: Gimli becomes immune to ranged attacks for 10 seconds",
+      "ultimate": "Dangerous in short distances: Gimli charges 10 meters knocking down any foe in his path for 10 seconds.",
+      "image": "./images/gimli.webp"
+    },
+    {
+      "id": 3,
+      "name": "Gandalf",
+      "passive": "Fly you fools: Gandalfs words inspire his allies allowing them to move more quickly.",
+      "basic": "Gandalf the White: Gandalf activates his staff creating an aura around him that increases dodge chance of allies by 25% for 15 seconds.",
+      "ultimate": "You shall not pass!: Gandalf uses his staff to knock down all enemies in a 5 meter radius around him for 10 seconds.",
+      "image": "./images/gandalf.webp"
+    },
+    {
+      "id": 4,
+      "name": "Frodo",
+      "passive": "Mithril: Frodos armor increases his dodge chance by 30%.",
+      "basic": "Sting: Frodo actives his blade increasing the damage of his next attack by 100%.",
+      "ultimate": "The Ring: Frodo activates the Ring turning him invisible for 20 seconds.",
+      "image": "./images/frodo.webp"
+    },
+    {
+      "id": 5,
+      "name": "Samwise",
+      "passive": "I made a promise: When Samwise is within 5m of his allies he increases their dodge chance by 10%.",
+      "basic": "Potatoes: Samwises cooking heals an ally for 50 hitpoints.",
+      "ultimate": "I can carry you: Samwise targets an ally making them immune to any damage for 15 seconds.",
+      "image": "./images/samwise.webp"
+    },
+    {
+      "id": 6,
+      "name": "Gollum",
+      "passive": "Sneaking: Moving on all 4, Gollum his harder to detect and can stealthily make his way around the battlefield when not in combat for 10 seconds. He begins combat with this effect active.",
+      "basic": "Nobody likes you: Gollum taunts an enemies within 5m of him, lowering their chance to hit by 20% for 15 seconds.",
+      "ultimate": "My Precious: Gollum goes berserk in pursuit of his Precious, massively increasing his damage and attack speed for 20 seconds.",
+      "image": "./images/gollum.webp"
+    },
+    {
+      "id": 7,
+      "name": "Radagast",
+      "passive": "Wild sense: Radagast senses the wildlife around and periodically summons animals to fight alongside him.",
+      "basic": "One with nature: Radagast draw from the energy of nature, healing a nearby ally for 50 hitpoints.",
+      "ultimate": "Tender of Beasts: Radagast summons a pack of animals that trample enemies in a line, dealing damage and knocking them down for 5 seconds.",
+      "image": "./images/radagast.webp"
+    }
+  ] 
