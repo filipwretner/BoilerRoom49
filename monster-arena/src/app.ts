@@ -12,6 +12,7 @@ let allCharacters: Character[] = [];
 const messageDiv = document.getElementById("messageDiv") as HTMLElement;
 
 async function fetchCharacters(): Promise<void> {
+    
     try {
 
         const response = await fetch('./characters.json');
@@ -22,7 +23,7 @@ async function fetchCharacters(): Promise<void> {
 
         const data = await response.json();
 
-        allCharacters = data.map((character: any) => ({
+        allCharacters = data.map((character: Character) => ({
             id: character.id,
             name: character.name,
             image: character.image,
